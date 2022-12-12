@@ -1,16 +1,16 @@
 import React from 'react';
-import { RecoilRoot, useRecoilValue, useRecoilState } from 'recoil';
-import { sonicState as sonicAtom, userState as userAtom } from '../state';
+import { RecoilRoot, useSetRecoilState } from 'recoil';
+import { userState as userAtom } from '../state';
+import orbis from '../orbis.client';
 
 export interface IConnectProps {}
 
 const App: React.FC<IConnectProps> = () => {
-  const sonic = useRecoilValue(sonicAtom);
-  const [_, setUser] = useRecoilState(userAtom);
+  const setUser = useSetRecoilState(userAtom);
 
   const connect = async () => {
     try {
-      const res = await sonic.connect_v2({
+      const res = await orbis.connect_v2({
         chain: 'ethereum',
         lit: true
       });
