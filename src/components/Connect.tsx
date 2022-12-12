@@ -15,10 +15,10 @@ const App: React.FC<IConnectProps> = () => {
         lit: true
       });
       setUser(res.details);
-      console.log(res);
+      console.log('connect sonic res:', res);
     } catch (e) {
       setUser({});
-      console.log(e);
+      console.log('connect sonic err:', e);
     }
   };
 
