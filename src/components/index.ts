@@ -1,2 +1,2 @@
-export * from './Sonic';
+export * from './User';
 export * from './Connect';

@@ -1,21 +1,22 @@
 import React from 'react';
-import { RecoilRoot, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
 
 export interface IConnectProps {}
 
-const App: React.FC<IConnectProps> = () => {
+export const Connect: React.FC<IConnectProps> = () => {
   const setUser = useSetRecoilState(userAtom);
 
   const connect = async () => {
     try {
       const res = await orbis.connect_v2({
+        provider: window.ethereum,
         chain: 'ethereum',
         lit: true
       });
       setUser(res.details);
-      console.log('connect sonic res:', res);
+      console.log('connect sonic res:', res.details);
     } catch (e) {
       setUser({});
       console.log('connect sonic err:', e);
@@ -23,12 +24,4 @@ const App: React.FC<IConnectProps> = () => {
   };
 
   return <button onClick={connect}>Connect +</button>;
-};
-
-export const Connect: React.FC = () => {
-  return (
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
-  );
 };

@@ -12,7 +12,8 @@
     "build:esm": "tsc",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "localPub": "npm run build && npm pack"
   },
   "repository": "https://github.com/sahilpabale/sonic-sdk.git",
   "author": "Sahil Pabale <dev.sahilpabale@gmail.com> (https://sahil.lol)",
