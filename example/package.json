@@ -16,7 +16,8 @@
     "start": "GENERATE_SOURCEMAP=false react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "getSonic": "yarn remove @0xsonic/sdk && yarn add ../0xsonic-sdk-0.1.6.tgz"
   },
   "eslintConfig": {
     "extends": [

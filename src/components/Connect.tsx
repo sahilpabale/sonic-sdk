@@ -5,9 +5,9 @@ import { useSetRecoilState } from 'recoil';
 import orbis from '../orbis.client';
 import { SonicContext } from '../SonicProvider';
 
-export interface IConnectProps {}
+// export interface IConnectProps {}
 
-export const Connect: React.FC<IConnectProps> = () => {
+export const Connect: React.FC = () => {
   const userAtom = useContext(SonicContext);
 
   const setUser = useSetRecoilState(userAtom);
