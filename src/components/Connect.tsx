@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
@@ -26,5 +27,5 @@ export const Connect: React.FC<IConnectProps> = () => {
     }
   };
 
-  return <button onClick={connect}>Connect +</button>;
+  return <Button onClick={connect}>Connect +</Button>;
 };
