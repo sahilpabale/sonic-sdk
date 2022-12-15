@@ -42,7 +42,11 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.3",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@orbisclub/orbis-sdk": "^0.4.4-beta.41",
+    "framer-motion": "^7.10.0",
     "recoil": "^0.7.6"
   }
 }
