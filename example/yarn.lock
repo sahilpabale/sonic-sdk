@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@0xsonic/sdk@../0xsonic-sdk-0.1.6.tgz":
-  version "0.1.6"
-  resolved "../0xsonic-sdk-0.1.6.tgz#84035c66f728a387b9abfb0f8d456d6f4f538f36"
+"@0xsonic/sdk@../0xsonic-sdk-0.1.7.tgz":
+  version "0.1.7"
+  resolved "../0xsonic-sdk-0.1.7.tgz#8e0928cbc648308d4471392318c430f95c328fdd"
   dependencies:
     "@chakra-ui/react" "^2.4.3"
     "@emotion/react" "^11.10.5"
@@ -10640,9 +10640,9 @@ run-parallel@^1.1.9:
     queue-microtask "^1.2.2"
 
 rxjs@^7.5.2:
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.6.0.tgz#361da5362b6ddaa691a2de0b4f2d32028f1eb5a2"
-  integrity sha512-DDa7d8TFNUalGC9VqXvQ1euWNN7sc63TrUCuM9J998+ViviahMIjKSOU7rfcgFOF+FCD71BhDRv4hrFz+ImDLQ==
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.0.tgz#90a938862a82888ff4c7359811a595e14e1e09a4"
+  integrity sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==
   dependencies:
     tslib "^2.1.0"
 

@@ -9,14 +9,6 @@ const baseStyle = defineStyle({
   verticalAlign: 'top'
 });
 
-function getDefaults(props: Record<string, any>) {
-  const { focusBorderColor: fc, errorBorderColor: ec } = props;
-  return {
-    focusBorderColor: fc || 'accent.primary',
-    errorBorderColor: ec || 'state.error'
-  };
-}
-
 // const variants = {
 //   outline: defineStyle(props => {
 //     const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props);
