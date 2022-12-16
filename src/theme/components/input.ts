@@ -137,7 +137,6 @@ const variantFilled = definePartsStyle((props) => {
 });
 
 const variantFlushed = definePartsStyle((props) => {
-  const { theme } = props;
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props);
 
   return {

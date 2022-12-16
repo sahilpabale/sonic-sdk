@@ -1,4 +1,4 @@
-import { User, Connect } from '@0xsonic/sdk';
+import { User, Connect, Sonic } from '@0xsonic/sdk';
 
 function App() {
   return (
@@ -6,6 +6,8 @@ function App() {
       <h1>0xSonic SDK Example</h1>
       <User />
       <Connect />
+
+      <Sonic />
     </div>
   );
 }

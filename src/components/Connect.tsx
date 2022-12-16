@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
@@ -12,7 +12,10 @@ export const Connect: React.FC = () => {
 
   const setUser = useSetRecoilState(userAtom);
 
+  const [isConnecting, setIsConnecting] = useState(false);
+
   const connect = async () => {
+    setIsConnecting(true);
     try {
       const res = await orbis.connect_v2({
         provider: window.ethereum,
@@ -24,8 +27,14 @@ export const Connect: React.FC = () => {
     } catch (e) {
       setUser({});
       console.log('connect sonic err:', e);
+    } finally {
+      setIsConnecting(false);
     }
   };
 
-  return <Button onClick={connect}>Connect +</Button>;
+  return (
+    <Button onClick={connect} isLoading={isConnecting} loadingText="Connecting...">
+      Connect +
+    </Button>
+  );
 };
