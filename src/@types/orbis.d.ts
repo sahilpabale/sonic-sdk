@@ -44,6 +44,7 @@ declare module '@orbisclub/orbis-sdk' {
   export class Orbis {
     // ...
     constructor();
+    // eslint-disable-next-line camelcase
     connect_v2(options: ConnectV2Options): Promise<any>;
 
     createPost(content: PostContent, encryptionRules?: EncryptionRules): Promise<Post>;

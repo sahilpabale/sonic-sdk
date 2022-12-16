@@ -58,17 +58,17 @@ const variantSolid = defineStyle((props) => {
       _active: { bg: 'accent.tertiary' }
     };
   } else if (c === 'gray') {
-    const bg = mode(`gray.100`, `whiteAlpha.200`)(props);
+    const bg = mode('gray.100', 'whiteAlpha.200')(props);
 
     return {
       bg,
       _hover: {
-        bg: mode(`gray.200`, `whiteAlpha.300`)(props),
+        bg: mode('gray.200', 'whiteAlpha.300')(props),
         _disabled: {
           bg
         }
       },
-      _active: { bg: mode(`gray.300`, `whiteAlpha.400`)(props) }
+      _active: { bg: mode('gray.300', 'whiteAlpha.400')(props) }
     };
   }
 
@@ -78,7 +78,7 @@ const variantSolid = defineStyle((props) => {
 
   return {
     bg: background,
-    color: mode(color, `gray.800`)(props),
+    color: mode(color, 'gray.800')(props),
     _hover: {
       bg: mode(hoverBg, `${c}.400`)(props),
       _disabled: {
@@ -111,19 +111,19 @@ const variantSolidBorder = defineStyle((props) => {
       _active: { bg: 'accent.tertiary' }
     };
   } else if (c === 'gray') {
-    const bg = mode(`gray.100`, `whiteAlpha.200`)(props);
+    const bg = mode('gray.100', 'whiteAlpha.200')(props);
 
     return {
       bg,
       border: '1px solid',
-      borderColor: mode(`gray.200`, `whiteAlpha.300`)(props),
+      borderColor: mode('gray.200', 'whiteAlpha.300')(props),
       _hover: {
-        bg: mode(`gray.200`, `whiteAlpha.300`)(props),
+        bg: mode('gray.200', 'whiteAlpha.300')(props),
         _disabled: {
           bg
         }
       },
-      _active: { bg: mode(`gray.300`, `whiteAlpha.400`)(props) }
+      _active: { bg: mode('gray.300', 'whiteAlpha.400')(props) }
     };
   }
 
@@ -133,7 +133,7 @@ const variantSolidBorder = defineStyle((props) => {
 
   return {
     bg: background,
-    color: mode(color, `gray.800`)(props),
+    color: mode(color, 'gray.800')(props),
     border: '1px solid',
     borderColor: mode(`${c}.600`, `${c}.300`)(props),
     _hover: {
@@ -153,7 +153,7 @@ const variantLink = defineStyle((props) => {
     height: 'auto',
     lineHeight: 'normal',
     verticalAlign: 'baseline',
-    color: c === 'brand' ? mode(`gray.700`, `gray.300`)(props) : mode(`${c}.700`, `${c}.300`)(props), // TODO: make this accent color or smth
+    color: c === 'brand' ? mode('gray.700', 'gray.300')(props) : mode(`${c}.700`, `${c}.300`)(props), // TODO: make this accent color or smth
     _hover: {
       textDecoration: 'underline',
       _disabled: {
@@ -161,7 +161,7 @@ const variantLink = defineStyle((props) => {
       }
     },
     _active: {
-      color: c === 'brand' ? mode(`gray.900`, `gray.500`)(props) : mode(`${c}.900`, `${c}.500`)(props) // TODO: make this accent color or smth
+      color: c === 'brand' ? mode('gray.900', 'gray.500')(props) : mode(`${c}.900`, `${c}.500`)(props) // TODO: make this accent color or smth
     }
   };
 });
@@ -171,15 +171,15 @@ const variantGhost = defineStyle((props) => {
 
   if (c === 'gray') {
     return {
-      color: mode(`inherit`, `whiteAlpha.900`)(props),
+      color: mode('inherit', 'whiteAlpha.900')(props),
       _hover: {
-        bg: mode(`gray.200`, `whiteAlpha.300`)(props)
+        bg: mode('gray.200', 'whiteAlpha.300')(props)
       },
-      _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) }
+      _active: { bg: mode('gray.200', 'whiteAlpha.300')(props) }
     };
   } else if (c === 'brand') {
     return {
-      color: mode(`inherit`, `whiteAlpha.900`)(props),
+      color: mode('inherit', 'whiteAlpha.900')(props),
       _hover: {
         bg: 'brand.secondary'
       },
@@ -209,7 +209,7 @@ const variantOutline = defineStyle((props) => {
   const { colorScheme: c } = props;
   let borderColor;
   if (c === 'gray') {
-    borderColor = mode(`gray.200`, `whiteAlpha.300`)(props);
+    borderColor = mode('gray.200', 'whiteAlpha.300')(props);
   } else if (c === 'brand') {
     borderColor = 'brand.quaternary';
   } else if (c === 'accent') {

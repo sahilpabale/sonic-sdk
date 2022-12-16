@@ -4,13 +4,14 @@
 
 "@0xsonic/sdk@../0xsonic-sdk-0.1.7.tgz":
   version "0.1.7"
-  resolved "../0xsonic-sdk-0.1.7.tgz#8e0928cbc648308d4471392318c430f95c328fdd"
+  resolved "../0xsonic-sdk-0.1.7.tgz#1a416fe2c194d3cfbf7014b4b211b8dc61f329f4"
   dependencies:
     "@chakra-ui/react" "^2.4.3"
     "@emotion/react" "^11.10.5"
     "@emotion/styled" "^11.10.5"
     "@orbisclub/orbis-sdk" "^0.4.4-beta.41"
     framer-motion "^7.10.0"
+    react-hook-form "^7.40.0"
     recoil "^0.7.6"
 
 "@adobe/css-tools@^4.0.1":
@@ -10247,6 +10248,11 @@ react-focus-lock@^2.9.1:
     react-clientside-effect "^1.2.6"
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
+
+react-hook-form@^7.40.0:
+  version "7.40.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.40.0.tgz#62bc939dddca88522cd7f5135b6603192ccf7e17"
+  integrity sha512-0rokdxMPJs0k9bvFtY6dbcSydyNhnZNXCR49jgDr/aR03FDHFOK6gfh8ccqB3fl696Mk7lqh04xdm+agqWXKSw==
 
 react-image-file-resizer@^0.4.8:
   version "0.4.8"
