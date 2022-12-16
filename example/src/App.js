@@ -7,7 +7,7 @@ function App() {
       <User />
       <Connect />
 
-      <Sonic />
+      <Sonic context="sahil" />
     </div>
   );
 }
