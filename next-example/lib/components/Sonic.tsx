@@ -1,6 +1,6 @@
 import { Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, Input, Text, VStack } from '@chakra-ui/react';
 import Avatar from '@davatar/react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import orbis from '../orbis.client';
 import { truncateDid } from '../utils/truncate';
@@ -20,24 +20,40 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
     formState: { errors }
   } = useForm<PostForm>();
 
-  const [posts, setPosts] = React.useState<IOrbisPost[] | null>(null);
+  const [posts, setPosts] = useState<IOrbisPost[] | null>(null);
 
-  const addComment = (data: PostForm) => {
-    console.log('add comment:', data);
+  const [isAddingComment, setIsAddingComment] = useState(false);
 
-    orbis.createPost({
-      body: data.content,
-      context: context
-    });
+  const addComment = async (data: PostForm) => {
+    setIsAddingComment(true);
+    try {
+      const res = await orbis.createPost({
+        body: data.content,
+        context: context
+      });
+
+      if (!(res.status == 200)) {
+        throw new Error('Error creating post');
+      }
+
+      console.log('gonna fetch');
+
+      await fetchPosts();
+      console.log('fetched');
+    } catch (e) {
+      console.error('Error creating post', e);
+    } finally {
+      setIsAddingComment(false);
+    }
+  };
+
+  const fetchPosts = async () => {
+    const posts = await orbis.getPosts({ context: context });
+    console.log('posts', posts.data);
+    setPosts(posts.data);
   };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const posts = await orbis.getPosts({ context: context });
-      console.log('posts', posts.data);
-      setPosts(posts.data);
-    };
-
     fetchPosts();
   }, [context]);
 
@@ -51,7 +67,7 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
           {errors.content && <FormErrorMessage>{errors.content?.message}</FormErrorMessage>}
         </FormControl>
 
-        <Button type="submit" onClick={handleSubmit(addComment)}>
+        <Button type="submit" onClick={handleSubmit(addComment)} isLoading={isAddingComment}>
           Add Comment
         </Button>
 

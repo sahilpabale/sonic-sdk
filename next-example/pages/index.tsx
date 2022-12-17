@@ -16,7 +16,7 @@ export default function Home() {
         <Connect />
         <User />
 
-        <Sonic context="sahil" />
+        <Sonic context="sonictest" />
       </main>
     </>
   );
