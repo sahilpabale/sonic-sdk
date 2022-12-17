@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, Input, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input, Text, VStack } from '@chakra-ui/react';
 import Avatar from '@davatar/react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -58,9 +58,9 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
   }, [context]);
 
   return (
-    <VStack gap={8}>
+    <VStack gap={8} bgColor="brand.secondary" p={4} rounded="xl" w="4xl" border="1px solid" borderColor="brand.tertiary">
       <Text>Context: {context}</Text>
-      <VStack gap={8} as="form">
+      <VStack gap={8} as="form" w="full">
         <FormControl isRequired isInvalid={errors.content ? true : false}>
           <FormLabel>Post Content</FormLabel>
           <Input {...register('content', { required: true })} />
@@ -74,14 +74,29 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
         {posts &&
           posts.length > 0 &&
           posts.map((post) => (
-            <VStack gap={4} rounded="xl" p={4} backgroundColor="brand.tertiary">
-              <HStack gap={2}>
+            <VStack gap={2} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary">
+              <HStack gap={2} px={6} pt={4} pb={1}>
                 <Avatar size={32} address={post.creator_details?.metadata.address as string} />
                 <Text fontSize="sm" fontWeight="semibold">
                   {truncateDid(post.creator)}
                 </Text>
               </HStack>
-              <Text>{post.content.body}</Text>
+              <Box bg="brand.quaternary" h="1px" w="full" />
+              <Text w="full" px={6}>
+                {post.content.body}
+              </Text>
+              <Box bg="brand.quaternary" h="1px" w="full" />
+              <HStack px={6} pb={4}>
+                <Button aria-label="Like" rounded="full" w={10} h={8} fontSize="sm">
+                  ❤️
+                </Button>
+                <Button aria-label="Haha" rounded="full" w={10} h={8} fontSize="sm">
+                  😂
+                </Button>
+                <Button aria-label="Downvote" rounded="full" w={10} h={8} fontSize="sm">
+                  👎
+                </Button>
+              </HStack>
             </VStack>
           ))}
       </VStack>
