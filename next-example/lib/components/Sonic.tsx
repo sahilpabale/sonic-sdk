@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import orbis from '../orbis.client';
 import { truncateDid } from '../utils/truncate';
+import Reaction from './Reaction';
 
 interface SonicProps {
   context: string;
@@ -87,15 +88,15 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
               </Text>
               <Box bg="brand.quaternary" h="1px" w="full" />
               <HStack px={6} pb={4}>
-                <Button aria-label="Like" rounded="full" w={10} h={8} fontSize="sm">
+                <Reaction reaction="like" postId={post.stream_id}>
                   ❤️
-                </Button>
-                <Button aria-label="Haha" rounded="full" w={10} h={8} fontSize="sm">
+                </Reaction>
+                <Reaction reaction="haha" postId={post.stream_id}>
                   😂
-                </Button>
-                <Button aria-label="Downvote" rounded="full" w={10} h={8} fontSize="sm">
+                </Reaction>
+                <Reaction reaction="downvote" postId={post.stream_id}>
                   👎
-                </Button>
+                </Reaction>
               </HStack>
             </VStack>
           ))}
