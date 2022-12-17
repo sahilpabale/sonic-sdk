@@ -47,6 +47,13 @@ declare module '@orbisclub/orbis-sdk' {
     error: any;
   };
 
+  interface IsConnectedResponse {
+    status: number;
+    did: string;
+    details: any;
+    result: string;
+  }
+
   export class Orbis {
     // ...
     constructor();
@@ -54,6 +61,8 @@ declare module '@orbisclub/orbis-sdk' {
     connect_v2(options: ConnectV2Options): Promise<any>;
 
     createPost(content: PostContent, encryptionRules?: EncryptionRules): Promise<Post>;
+
+    isConnected(): Promise<IsConnectedResponse>;
 
     logout(): Promise<LogoutResponse>;
   }

@@ -1,6 +1,6 @@
 import { Button, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, VStack } from '@chakra-ui/react';
 import Avatar from '@davatar/react';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
