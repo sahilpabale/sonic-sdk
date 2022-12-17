@@ -41,6 +41,12 @@ declare module '@orbisclub/orbis-sdk' {
     accessControlConditions: any;
   };
 
+  type LogoutResponse = {
+    status: number;
+    result: string;
+    error: any;
+  };
+
   export class Orbis {
     // ...
     constructor();
@@ -48,5 +54,7 @@ declare module '@orbisclub/orbis-sdk' {
     connect_v2(options: ConnectV2Options): Promise<any>;
 
     createPost(content: PostContent, encryptionRules?: EncryptionRules): Promise<Post>;
+
+    logout(): Promise<LogoutResponse>;
   }
 }

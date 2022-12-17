@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.3",
+    "@davatar/react": "^1.11.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@orbisclub/orbis-sdk": "^0.4.4-beta.41",

@@ -1,6 +1,7 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, VStack } from '@chakra-ui/react';
+import Avatar from '@davatar/react';
 import React, { useContext, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
 import { SonicContext } from '../SonicProvider';
@@ -11,6 +12,7 @@ export const Connect: React.FC = () => {
   const userAtom = useContext(SonicContext);
 
   const setUser = useSetRecoilState(userAtom);
+  const user = useRecoilValue(userAtom);
 
   const [isConnecting, setIsConnecting] = useState(false);
 
@@ -32,9 +34,44 @@ export const Connect: React.FC = () => {
     }
   };
 
+  const logout = async () => {
+    try {
+      await orbis.logout();
+      setUser({});
+    } catch (e) {
+      console.log('logout error');
+    }
+  };
+
   return (
-    <Button onClick={connect} isLoading={isConnecting} loadingText="Connecting...">
-      Connect +
-    </Button>
+    <>
+      {user.did ? (
+        <Popover>
+          <PopoverTrigger>
+            <Avatar size={32} address={user.did as string} />
+          </PopoverTrigger>
+
+          <PopoverContent>
+            <PopoverBody as={VStack} gap={4}>
+              {user?.profile?.username && (
+                <Text fontSize="xs" fontWeight="bold">
+                  {user.profile.username}
+                </Text>
+              )}
+              <Text fontSize="xs" textOverflow="ellipsis">
+                {user.did}
+              </Text>
+              <Button onClick={logout} colorScheme="red">
+                Logout
+              </Button>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      ) : (
+        <Button onClick={connect} isLoading={isConnecting} loadingText="Connecting...">
+          Connect +
+        </Button>
+      )}
+    </>
   );
 };
