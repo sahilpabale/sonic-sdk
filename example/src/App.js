@@ -1,4 +1,5 @@
-import { User, Connect, Sonic } from '@0xsonic/sdk';
+import React from 'react';
+import { User, Connect, Sonic } from '../../next-example/lib';
 
 function App() {
   return (

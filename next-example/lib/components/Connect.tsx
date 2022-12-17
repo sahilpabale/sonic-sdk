@@ -4,13 +4,11 @@ import React, { useContext, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
-import { SonicContext } from '../SonicProvider';
+import { userAtom } from '../state';
 
 // export interface IConnectProps {}
 
 export const Connect: React.FC = () => {
-  const userAtom = useContext(SonicContext);
-
   const setUser = useSetRecoilState(userAtom);
   const user = useRecoilValue(userAtom);
 
