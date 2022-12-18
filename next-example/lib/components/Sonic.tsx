@@ -2,7 +2,7 @@ import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, Ic
 import Avatar from '@davatar/react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import orbis from '../orbis.client';
 import { truncateDid } from '../utils/truncate';
 import Reactions from './Reactions';
@@ -21,6 +21,8 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
     handleSubmit,
     formState: { errors }
   } = useForm<PostForm>();
+
+  const queryClient = useQueryClient();
 
   const [isAddingComment, setIsAddingComment] = useState(false);
 
@@ -43,10 +45,9 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
         throw new Error('Error creating post');
       }
 
-      console.log('gonna fetch');
+      await new Promise((r) => setTimeout(r, 2000));
 
-      await fetchPosts();
-      console.log('fetched');
+      queryClient.refetchQueries('posts');
     } catch (e) {
       console.error('Error creating post', e);
     } finally {
