@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input, Text, Textarea, VStack } from '@chakra-ui/react';
 import Avatar from '@davatar/react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -61,7 +61,7 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
       <VStack gap={8} as="form" w="full">
         <FormControl isRequired isInvalid={errors.content ? true : false}>
           <FormLabel>Post Content</FormLabel>
-          <Input {...register('content', { required: true })} />
+          <Textarea {...register('content', { required: true })} />
           {errors.content && <FormErrorMessage>{errors.content?.message}</FormErrorMessage>}
         </FormControl>
 
