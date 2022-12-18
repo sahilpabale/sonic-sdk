@@ -1,5 +1,6 @@
 import { HStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useRecoilValue } from 'recoil';
 import orbis from '../orbis.client';
 import { userAtom } from '../state';
@@ -15,24 +16,19 @@ interface ReactionsProps {
 const Reactions: React.FC<ReactionsProps> = ({ id, like_count, haha_count, downvote_count }) => {
   const user = useRecoilValue(userAtom);
 
-  const [reactedTo, setReactedTo] = useState<string | null>(null);
-
   const fetchReactions = async () => {
     const { data, error } = await orbis.getReaction(id, user.did);
 
     if (error) {
       console.error('error fetching reactions', error);
-      return;
-    }
-
-    if (data) {
-      setReactedTo(data.type);
+    } else {
+      if (data) {
+        return data.type;
+      }
     }
   };
 
-  useEffect(() => {
-    fetchReactions();
-  });
+  const { data: reactedTo } = useQuery<string>(`userReaction-${id}`, fetchReactions);
 
   return (
     <HStack px={6} pb={4}>

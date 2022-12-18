@@ -290,19 +290,8 @@ declare interface IOrbis {
       algorithm?: keyof typeof IOrbisGetPostsAlgorithm | null;
     },
     page: number
-  ) => Promise<{
-    data: IOrbisPost[];
-    error: any;
-    status: number;
-  }>;
-  getReaction: (
-    post_id: string,
-    did: string
-  ) => Promise<{
-    data: { type: string };
-    error: any;
-    status: number;
-  }>;
+  ) => Promise<IOrbisGetPosts>;
+  getReaction: (post_id: string, did: string) => Promise<IOrbisGetReaction>;
   getProfile: (did: string) => Promise<{
     data: IOrbisProfile;
     error: any;
@@ -646,4 +635,16 @@ declare interface IOrbisNotification {
     did: string;
     profile: IOrbisProfile['details']['profile'];
   };
+}
+
+interface IOrbisGetPosts {
+  data: IOrbisPost[];
+  error: any;
+  status: number;
+}
+
+interface IOrbisGetReaction {
+  data: { type: string };
+  error: any;
+  status: number;
 }

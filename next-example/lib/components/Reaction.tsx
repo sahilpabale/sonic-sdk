@@ -1,5 +1,6 @@
 import { Button, Text } from '@chakra-ui/react';
 import React, { ReactNode, useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import orbis from '../orbis.client';
 
 interface ReactionProps {
@@ -11,19 +12,23 @@ interface ReactionProps {
 }
 
 const Reaction: React.FC<ReactionProps> = ({ reaction, postId, count, didViewerReact, children }) => {
-  const [isReacting, setIsReacting] = useState(false);
-
   const react = async () => {
-    setIsReacting(true);
     try {
       const res = await orbis.react(postId, reaction);
-      console.log('res', res);
+      if (!(res.status = 200)) throw new Error('Error reacting');
+
+      await new Promise((r) => setTimeout(r, 2000));
+
+      queryClient.refetchQueries(`userReaction-${postId}`);
+      queryClient.refetchQueries(`posts`);
     } catch (e) {
       console.log('error', e);
-    } finally {
-      setIsReacting(false);
     }
   };
+
+  const queryClient = useQueryClient();
+
+  const { isLoading: isReacting, mutate } = useMutation(react);
 
   return (
     <Button
@@ -33,7 +38,7 @@ const Reaction: React.FC<ReactionProps> = ({ reaction, postId, count, didViewerR
       h={8}
       fontSize="sm"
       isLoading={isReacting}
-      onClick={react}
+      onClick={() => mutate()}
       borderColor={didViewerReact ? 'accent.primary' : 'brand.quaternary'}
       backgroundColor={didViewerReact ? 'accent.secondary' : 'brand.secondary'}
       _hover={{

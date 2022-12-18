@@ -2,9 +2,9 @@ import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, Ic
 import Avatar from '@davatar/react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
 import orbis from '../orbis.client';
 import { truncateDid } from '../utils/truncate';
-import Reaction from './Reaction';
 import Reactions from './Reactions';
 
 interface SonicProps {
@@ -22,9 +22,14 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
     formState: { errors }
   } = useForm<PostForm>();
 
-  const [posts, setPosts] = useState<IOrbisPost[] | null>(null);
-
   const [isAddingComment, setIsAddingComment] = useState(false);
+
+  const fetchPosts = async () => {
+    const posts = await orbis.getPosts({ context: context });
+    return posts;
+  };
+
+  const { data: posts } = useQuery<IOrbisGetPosts>('posts', fetchPosts);
 
   const addComment = async (data: PostForm) => {
     setIsAddingComment(true);
@@ -49,16 +54,6 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
     }
   };
 
-  const fetchPosts = async () => {
-    const posts = await orbis.getPosts({ context: context });
-    console.log('posts', posts.data);
-    setPosts(posts.data);
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, [context]);
-
   return (
     <VStack gap={8} bgColor="brand.secondary" p={4} rounded="xl" w="4xl" border="1px solid" borderColor="brand.tertiary">
       <Text>Context: {context}</Text>
@@ -74,8 +69,8 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
         </Button>
 
         {posts &&
-          posts.length > 0 &&
-          posts.map((post) => (
+          posts.data.length > 0 &&
+          posts.data.map((post) => (
             <VStack gap={2} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary" key={post.stream_id}>
               <HStack gap={2} px={6} pt={4} pb={1}>
                 <Avatar size={32} address={post.creator_details?.metadata.address as string} />
