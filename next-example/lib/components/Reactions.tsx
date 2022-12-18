@@ -17,7 +17,7 @@ const Reactions: React.FC<ReactionsProps> = ({ id, like_count, haha_count, downv
   const user = useRecoilValue(userAtom);
 
   const fetchReactions = async () => {
-    const { data, error } = await orbis.getReaction(id, user.did);
+    const { data, error } = await orbis.getReaction(id, user.did, {});
 
     if (error) {
       console.error('error fetching reactions', error);
@@ -28,7 +28,7 @@ const Reactions: React.FC<ReactionsProps> = ({ id, like_count, haha_count, downv
     }
   };
 
-  const { data: reactedTo } = useQuery<string>(`userReaction-${id}`, fetchReactions);
+  const { data: reactedTo } = useQuery<string>(`userReaction-${id}`, fetchReactions, { enabled: !!user.did });
 
   return (
     <HStack px={6} pb={4}>
