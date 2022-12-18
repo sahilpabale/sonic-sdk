@@ -75,7 +75,7 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
         {posts &&
           posts.length > 0 &&
           posts.map((post) => (
-            <VStack gap={2} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary">
+            <VStack gap={2} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary" key={post.stream_id}>
               <HStack gap={2} px={6} pt={4} pb={1}>
                 <Avatar size={32} address={post.creator_details?.metadata.address as string} />
                 <Text fontSize="sm" fontWeight="semibold">

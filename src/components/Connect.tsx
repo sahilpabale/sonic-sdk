@@ -4,17 +4,32 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
-import { SonicContext } from '../SonicProvider';
+import { userAtom } from '../state';
+import { truncateDid } from '../utils/truncate';
 
 // export interface IConnectProps {}
 
 export const Connect: React.FC = () => {
-  const userAtom = useContext(SonicContext);
-
   const setUser = useSetRecoilState(userAtom);
   const user = useRecoilValue(userAtom);
 
   const [isConnecting, setIsConnecting] = useState(false);
+
+  useEffect(() => {
+    if (!user.did) {
+      checkIfUserIsConnected();
+    }
+  }, [user]);
+
+  const checkIfUserIsConnected = async () => {
+    let res = await orbis.isConnected();
+
+    console.log('res', res);
+
+    if (res && res.status == 200) {
+      setUser(res.details);
+    }
+  };
 
   const connect = async () => {
     setIsConnecting(true);
@@ -48,7 +63,9 @@ export const Connect: React.FC = () => {
       {user.did ? (
         <Popover>
           <PopoverTrigger>
-            <Button as={Avatar} address={user.metadata?.address || 'test'} />
+            <button>
+              <Avatar address={user.metadata?.address as string} size={32} />
+            </button>
           </PopoverTrigger>
 
           <PopoverContent>
@@ -59,7 +76,7 @@ export const Connect: React.FC = () => {
                 </Text>
               )}
               <Text fontSize="xs" textOverflow="ellipsis">
-                {user.did}
+                {truncateDid(user.did)}
               </Text>
               <Button onClick={logout} colorScheme="red">
                 Logout
