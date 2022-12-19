@@ -1,6 +1,6 @@
 import { Button, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, VStack } from '@chakra-ui/react';
-import Avatar from '@davatar/react';
-import React, { useContext, useEffect, useState } from 'react';
+import { Image } from '@davatar/react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
@@ -64,7 +64,7 @@ export const Connect: React.FC = () => {
         <Popover>
           <PopoverTrigger>
             <button>
-              <Avatar address={user.metadata?.address as string} size={32} />
+              <Image uri={user.profile?.pfp as string} size={32} />
             </button>
           </PopoverTrigger>
 
