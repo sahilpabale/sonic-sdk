@@ -2,7 +2,7 @@ import { Drawer, Button, Text, DrawerOverlay, DrawerContent, DrawerCloseButton, 
 import React, { useRef, MutableRefObject } from 'react';
 import { FaReply } from 'react-icons/fa';
 import { fetchReplies } from '../utils/posts';
-import Post from './Post';
+import { Post } from './Post';
 import { useQuery } from 'react-query';
 
 interface ReplyToProps {

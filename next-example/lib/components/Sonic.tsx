@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery, useQueryClient } from 'react-query';
 import orbis from '../orbis.client';
-import Post from './Post';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { Post } from './Post';
+dayjs.extend(relativeTime);
 
 interface SonicProps {
   context: string;
@@ -66,7 +69,7 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
           Add Comment
         </Button>
 
-        {posts && posts.data.length > 0 && posts.data.map((post) => <Post post={post} />)}
+        {posts && posts.data.length > 0 && posts.data.map((post) => <Post post={post} key={post.stream_id} />)}
       </VStack>
     </VStack>
   );

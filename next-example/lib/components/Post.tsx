@@ -1,27 +1,47 @@
-import { HStack, VStack, Text, Box } from '@chakra-ui/react';
-import Avatar from '@davatar/react';
+import React from 'react';
+import { VStack, HStack, Text, Box } from '@chakra-ui/react';
+import { Image } from '@davatar/react';
+import dayjs from 'dayjs';
 import { truncateDid } from '../utils/truncate';
+import { ReplyTo } from './ReplyTo';
 import Reactions from './Reactions';
 
 interface PostProps {
   post: IOrbisPost;
 }
 
-const Post: React.FC<PostProps> = ({ post }) => (
-  <VStack gap={2} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary" key={post.stream_id}>
-    <HStack gap={2} px={6} pt={4} pb={1}>
-      <Avatar size={32} address={post.creator_details?.metadata.address as string} />
-      <Text fontSize="sm" fontWeight="semibold">
-        {truncateDid(post.creator)}
-      </Text>
-    </HStack>
-    <Box bg="brand.quaternary" h="1px" w="full" />
-    <Text w="full" px={6}>
-      {post.content.body}
-    </Text>
-    <Box bg="brand.quaternary" h="1px" w="full" />
-    <Reactions id={post.stream_id} like_count={post.count_likes} haha_count={post.count_haha} downvote_count={post.count_downvotes} />
-  </VStack>
-);
+const randomPfp = () => {
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  return `https://avatars.dicebear.com/api/initials/0x.svg?b=%23${randomColor}&r=50&scale=107&backgroundColorLevel=700&fontSize=43&bold=true`;
+};
 
-export default Post;
+export const Post: React.FC<PostProps> = ({ post }) => {
+  return (
+    <VStack gap={1} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary">
+      <HStack gap={2} px={4} pt={3} pb={1}>
+        <Image size={32} uri={post.creator_details?.profile === null ? randomPfp() : (post.creator_details?.profile?.pfp as string)} />
+        {post.creator_details?.profile === null ? (
+          <Text fontSize="md" fontWeight="semibold">
+            {truncateDid(post.creator)}
+          </Text>
+        ) : (
+          <Text fontSize="md" fontWeight="semibold">
+            {post.creator_details?.profile?.username as string}{' '}
+            <Text color="darkgray" as="span">
+              ({truncateDid(post.creator)})
+            </Text>
+          </Text>
+        )}
+        <Text>{dayjs.unix(post.timestamp).fromNow()}</Text>
+      </HStack>
+      <Text w="full" px={6}>
+        {post.content.body}
+      </Text>
+      <Box bg="brand.quaternary" h="1px" w="full" />
+      <HStack px={6} pb={4}>
+        <ReplyTo master={post.stream_id} count={post.count_replies} />
+        <Reactions id={post.stream_id} like_count={post.count_likes} haha_count={post.count_haha} downvote_count={post.count_downvotes} />
+      </HStack>
+    </VStack>
+  );
+};
