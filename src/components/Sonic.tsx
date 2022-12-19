@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormErrorMessage, FormLabel, HStack, Input, Text, VStack } from '@chakra-ui/react';
 import Avatar from '@davatar/react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';

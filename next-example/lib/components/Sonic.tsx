@@ -1,10 +1,12 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input, Text, VStack } from '@chakra-ui/react';
-import Avatar from '@davatar/react';
+import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import orbis from '../orbis.client';
-import { truncateDid } from '../utils/truncate';
-import Reaction from './Reaction';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { Post } from './Post';
+import { fetchPosts } from '../utils/posts';
+dayjs.extend(relativeTime);
 
 interface SonicProps {
   context: string;
@@ -39,7 +41,9 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
 
       console.log('gonna fetch');
 
-      await fetchPosts();
+      const posts = await fetchPosts(context);
+      setPosts(posts);
+
       console.log('fetched');
     } catch (e) {
       console.error('Error creating post', e);
@@ -48,14 +52,10 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
     }
   };
 
-  const fetchPosts = async () => {
-    const posts = await orbis.getPosts({ context: context });
-    console.log('posts', posts.data);
-    setPosts(posts.data);
-  };
-
   useEffect(() => {
-    fetchPosts();
+    fetchPosts(context).then((data) => {
+      setPosts(data);
+    });
   }, [context]);
 
   return (
@@ -72,34 +72,7 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
           Add Comment
         </Button>
 
-        {posts &&
-          posts.length > 0 &&
-          posts.map((post) => (
-            <VStack gap={2} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary" key={post.stream_id}>
-              <HStack gap={2} px={6} pt={4} pb={1}>
-                <Avatar size={32} address={post.creator_details?.metadata.address as string} />
-                <Text fontSize="sm" fontWeight="semibold">
-                  {truncateDid(post.creator)}
-                </Text>
-              </HStack>
-              <Box bg="brand.quaternary" h="1px" w="full" />
-              <Text w="full" px={6}>
-                {post.content.body}
-              </Text>
-              <Box bg="brand.quaternary" h="1px" w="full" />
-              <HStack px={6} pb={4}>
-                <Reaction reaction="like" postId={post.stream_id}>
-                  ❤️
-                </Reaction>
-                <Reaction reaction="haha" postId={post.stream_id}>
-                  😂
-                </Reaction>
-                <Reaction reaction="downvote" postId={post.stream_id}>
-                  👎
-                </Reaction>
-              </HStack>
-            </VStack>
-          ))}
+        {posts && posts.length > 0 && posts.map((post) => <Post key={post.stream_id} post={post} />)}
       </VStack>
     </VStack>
   );

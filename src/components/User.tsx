@@ -1,6 +1,4 @@
-import React, { useContext } from 'react';
 import { useRecoilValue } from 'recoil';
-import { SonicContext } from '../SonicProvider';
 import { Text } from '@chakra-ui/react';
 import { userAtom } from '../state';
 
