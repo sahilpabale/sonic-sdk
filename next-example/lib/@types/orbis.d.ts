@@ -636,7 +636,6 @@ declare interface IOrbisNotification {
     profile: IOrbisProfile['details']['profile'];
   };
 }
-
 interface IOrbisGetPosts {
   data: IOrbisPost[];
   error: any;

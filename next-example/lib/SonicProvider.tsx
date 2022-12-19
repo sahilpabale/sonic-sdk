@@ -10,6 +10,7 @@ export interface ISonicProviderProps {
 }
 
 export const SonicContext = createContext(userAtom);
+
 const queryClient = new QueryClient();
 
 export const SonicProvider: React.FC<ISonicProviderProps> = ({ children }) => {

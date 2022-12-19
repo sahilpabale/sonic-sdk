@@ -52,7 +52,6 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
       setIsAddingComment(false);
     }
   };
-
   return (
     <VStack gap={8} bgColor="brand.secondary" p={4} rounded="xl" w="4xl" border="1px solid" borderColor="brand.tertiary">
       <Text>Context: {context}</Text>
