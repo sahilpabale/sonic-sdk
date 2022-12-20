@@ -13,11 +13,11 @@ const theme = extendTheme({
     useSystemColorMode: true
   },
   styles: {
-    global: {
-      'html, body': {
-        background: 'brand.primary'
+    global: () => ({
+      body: {
+        bg: ''
       }
-    }
+    })
   }
 });
 
