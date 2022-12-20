@@ -8,6 +8,7 @@ import Reactions from './Reactions';
 
 interface PostProps {
   post: IOrbisPost;
+  context: string;
 }
 
 const randomPfp = () => {
@@ -15,7 +16,7 @@ const randomPfp = () => {
   return `https://avatars.dicebear.com/api/initials/0x.svg?b=%23${randomColor}&r=50&scale=107&backgroundColorLevel=700&fontSize=43&bold=true`;
 };
 
-export const Post: React.FC<PostProps> = ({ post }) => {
+export const Post: React.FC<PostProps> = ({ post, context }) => {
   return (
     <VStack gap={1} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary">
       <HStack gap={2} px={4} pt={3} pb={1}>
@@ -39,7 +40,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
       </Text>
       <Box bg="brand.quaternary" h="1px" w="full" />
       <HStack px={6} pb={4}>
-        <ReplyTo master={post.stream_id} count={post.count_replies} />
+        <ReplyTo master={post} count={post.count_replies} context={context} />
         <Reactions id={post.stream_id} like_count={post.count_likes} haha_count={post.count_haha} downvote_count={post.count_downvotes} />
       </HStack>
     </VStack>

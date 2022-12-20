@@ -4,18 +4,19 @@ import { FaReply } from 'react-icons/fa';
 import { fetchReplies } from '../utils/posts';
 import { Post } from './Post';
 import { useQuery } from 'react-query';
-import { AddReply } from './AddReply';
+import { AddPost } from './AddPost';
 
 interface ReplyToProps {
   count: number;
-  master: string;
+  master: IOrbisPost;
+  context: string;
 }
 
-export const ReplyTo: React.FC<ReplyToProps> = ({ count, master }) => {
+export const ReplyTo: React.FC<ReplyToProps> = ({ count, master, context }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef: MutableRefObject<any> = useRef();
 
-  const { isLoading, data, refetch } = useQuery(`replies-${master}`, async () => await fetchReplies(master), {
+  const { isLoading, data, refetch } = useQuery(`replies-${master}`, async () => await fetchReplies(master.stream_id), {
     enabled: false
   });
 
@@ -33,7 +34,7 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ count, master }) => {
       </Button>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef} size="md">
         <DrawerOverlay />
-        <DrawerContent backgroundColor="gray.800" overflow="scroll">
+        <DrawerContent backgroundColor="brand.secondary" overflow="scroll">
           <DrawerCloseButton />
 
           <DrawerHeader>Replies to </DrawerHeader>
@@ -43,17 +44,14 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ count, master }) => {
             <div>
               <DrawerBody>
                 <VStack gap={8} as="form" w="full">
-                  {data?.masterPost && <Post post={data.masterPost} />}
+                  <Post post={master} context={context} />
                   <Box bg="brand.quaternary" h="0.8" w="full" />
-                  {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} />)}
+                  <AddPost master={master.stream_id} context={context} />
+                  {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} context={context} />)}
                 </VStack>
               </DrawerBody>
             </div>
           )}
-
-          <DrawerFooter>
-            <AddReply master={master} />
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
