@@ -4,6 +4,7 @@ import { FaReply } from 'react-icons/fa';
 import { fetchReplies } from '../utils/posts';
 import { Post } from './Post';
 import { useQuery } from 'react-query';
+import { AddReply } from './AddReply';
 
 interface ReplyToProps {
   count: number;
@@ -56,7 +57,9 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ count, master }) => {
             </div>
           )}
 
-          <DrawerFooter></DrawerFooter>
+          <DrawerFooter>
+            <AddReply master={master} />
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
