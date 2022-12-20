@@ -48,7 +48,7 @@ export const AddPost: React.FC<AddReplyProps> = ({ master, context }) => {
     }
   };
   return (
-    <VStack gap={4} w="full" as="form">
+    <VStack gap={4} w="full" as="form" alignItems="end">
       <FormControl isRequired isInvalid={errors.content ? true : false}>
         <Textarea {...register('content', { required: true })} placeholder={master ? 'Your Reply' : 'Your Comment'} />
         {errors.content && <FormErrorMessage>{errors.content?.message}</FormErrorMessage>}
