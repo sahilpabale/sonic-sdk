@@ -43,7 +43,7 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ count, master, context }) => {
           ) : (
             <div>
               <DrawerBody>
-                <VStack gap={8} as="form" w="full">
+                <VStack gap={8} w="full">
                   <Post post={master} context={context} />
                   <Box bg="brand.quaternary" h="0.8" w="full" />
                   <AddPost master={master.stream_id} context={context} />
