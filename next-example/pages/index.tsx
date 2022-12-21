@@ -13,9 +13,6 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1>0xSonic SDK Example</h1>
-        <Connect />
-        <User />
-
         <Sonic context="sonictest" />
       </main>
     </>

@@ -31,7 +31,7 @@ const Reactions: React.FC<ReactionsProps> = ({ id, like_count, haha_count, downv
   const { data: reactedTo } = useQuery<string>(`userReaction-${id}`, fetchReactions, { enabled: !!user.did });
 
   return (
-    <HStack px={6} pb={4}>
+    <HStack px={4} spacing="1.5">
       <Reaction reaction="like" postId={id} count={like_count} didViewerReact={reactedTo === 'like'}>
         ❤️
       </Reaction>

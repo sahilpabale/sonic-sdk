@@ -86,7 +86,7 @@ export const Connect: React.FC = () => {
         </Popover>
       ) : (
         <Button onClick={connect} isLoading={isConnecting} loadingText="Connecting...">
-          Connect +
+          Connect Wallet
         </Button>
       )}
     </>

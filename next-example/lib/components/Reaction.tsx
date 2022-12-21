@@ -34,7 +34,7 @@ const Reaction: React.FC<ReactionProps> = ({ reaction, postId, count, didViewerR
     <Button
       aria-label={reaction}
       rounded="full"
-      w={12}
+      w={14}
       h={8}
       fontSize="sm"
       isLoading={isReacting}
