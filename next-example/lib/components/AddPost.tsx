@@ -35,6 +35,7 @@ export const AddPost: React.FC<AddReplyProps> = ({ master, context }) => {
       const res = await orbis.createPost({
         body: data.content,
         context,
+        reply_to: master ?? null,
         master: master ?? null
       });
 
@@ -43,9 +44,9 @@ export const AddPost: React.FC<AddReplyProps> = ({ master, context }) => {
       }
 
       await new Promise((r) => setTimeout(r, 2000));
-      queryClient.refetchQueries('posts');
+      await queryClient.refetchQueries('posts');
       if (master) {
-        queryClient.refetchQueries(`replies-${master}`);
+        await queryClient.refetchQueries(`replies-${master}`);
       }
     } catch (e) {
       console.error('Error creating post', e);

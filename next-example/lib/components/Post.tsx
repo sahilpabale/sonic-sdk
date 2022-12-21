@@ -5,16 +5,12 @@ import dayjs from 'dayjs';
 import { truncateDid } from '../utils/truncate';
 import { ReplyTo } from './ReplyTo';
 import Reactions from './Reactions';
+import randomPfp from '../utils/randomPfp';
 
 interface PostProps {
   post: IOrbisPost;
   context: string;
 }
-
-const randomPfp = () => {
-  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-  return `https://avatars.dicebear.com/api/initials/0x.svg?b=%23${randomColor}&r=50&scale=107&backgroundColorLevel=700&fontSize=43&bold=true`;
-};
 
 export const Post: React.FC<PostProps> = ({ post, context }) => {
   return (

@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 // import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
 import { userAtom } from '../state';
+import randomPfp from '../utils/randomPfp';
 import { truncateDid } from '../utils/truncate';
 
 // export interface IConnectProps {}
@@ -64,7 +65,7 @@ export const Connect: React.FC = () => {
         <Popover>
           <PopoverTrigger>
             <button>
-              <Image uri={user.profile?.pfp as string} size={32} />
+              <Image uri={user.profile?.pfp ?? randomPfp()} size={32} />
             </button>
           </PopoverTrigger>
 
