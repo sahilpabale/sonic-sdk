@@ -96,7 +96,7 @@ export const AddPost: React.FC<AddReplyProps> = ({ master, context }) => {
           {errors.content && <FormErrorMessage>{errors.content?.message}</FormErrorMessage>}
         </FormControl>
       </HStack>
-      <Button type="submit" onClick={handleSubmit(addComment)} isLoading={isAddingPost} colorScheme="yellow">
+      <Button type="submit" onClick={handleSubmit(addComment)} isLoading={isAddingPost} colorScheme="green">
         Add {master ? 'Reply' : 'Comment'}
       </Button>
     </VStack>
