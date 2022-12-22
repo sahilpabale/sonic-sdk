@@ -40,20 +40,20 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ count, master, context }) => {
           <DrawerCloseButton />
 
           <DrawerHeader>Replies to </DrawerHeader>
-          {isLoading ? (
-            <div>loading</div>
-          ) : (
-            <div>
-              <DrawerBody>
-                <VStack gap={8} w="full">
+          <DrawerBody>
+            <VStack gap={8} w="full">
+              {isLoading ? (
+                <Spinner />
+              ) : (
+                <>
                   <Post post={master} context={context} />
                   <Box bg="brand.quaternary" h="0.8" w="full" />
                   <AddPost master={master.stream_id} context={context} />
                   {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} context={context} />)}
-                </VStack>
-              </DrawerBody>
-            </div>
-          )}
+                </>
+              )}
+            </VStack>
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>

@@ -1,11 +1,10 @@
 import React from 'react';
-import { VStack, HStack, Text, Box } from '@chakra-ui/react';
-import { Image } from '@davatar/react';
+import { VStack, HStack, Text, Box, Avatar } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { truncateDid } from '../utils/truncate';
 import { ReplyTo } from './ReplyTo';
 import Reactions from './Reactions';
-import randomPfp from '../utils/randomPfp';
+import Blockies from 'react-blockies';
 
 interface PostProps {
   post: IOrbisPost;
@@ -16,7 +15,7 @@ export const Post: React.FC<PostProps> = ({ post, context }) => {
   return (
     <VStack gap={1} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary">
       <HStack gap={2} px={4} pt={3} pb={1}>
-        <Image size={32} uri={post.creator_details?.profile === null ? randomPfp() : (post.creator_details?.profile?.pfp as string)} />
+        {post.creator_details?.profile?.pfp ? <Avatar size="sm" src={post.creator_details?.profile?.pfp} /> : <Avatar as={Blockies} seed={post.creator_details?.did ?? post.creator} size="sm" />}
         {post.creator_details?.profile === null ? (
           <Text fontSize="md" fontWeight="semibold">
             {truncateDid(post.creator)}

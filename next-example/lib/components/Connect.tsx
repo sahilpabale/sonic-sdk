@@ -1,12 +1,12 @@
-import { Button, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, VStack } from '@chakra-ui/react';
+import { Avatar, Button, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, VStack } from '@chakra-ui/react';
 import { Image } from '@davatar/react';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-// import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
 import { userAtom } from '../state';
 import randomPfp from '../utils/randomPfp';
 import { truncateDid } from '../utils/truncate';
+import Blockies from 'react-blockies';
 
 // export interface IConnectProps {}
 
@@ -64,12 +64,10 @@ export const Connect: React.FC = () => {
       {user.did ? (
         <Popover>
           <PopoverTrigger>
-            <button>
-              <Image uri={user.profile?.pfp ?? randomPfp()} size={32} />
-            </button>
+            <button>{user.profile?.pfp ? <Avatar size="sm" src={user.profile.pfp} /> : <Avatar as={Blockies} seed={user.did} size="sm" />}</button>
           </PopoverTrigger>
 
-          <PopoverContent>
+          <PopoverContent w={32}>
             <PopoverBody as={VStack} gap={4}>
               {user?.profile?.username && (
                 <Text fontSize="xs" fontWeight="bold">
@@ -86,7 +84,7 @@ export const Connect: React.FC = () => {
           </PopoverContent>
         </Popover>
       ) : (
-        <Button onClick={connect} isLoading={isConnecting} loadingText="Connecting...">
+        <Button onClick={connect} isLoading={isConnecting} loadingText="Connecting..." colorScheme="yellow">
           Connect Wallet
         </Button>
       )}
