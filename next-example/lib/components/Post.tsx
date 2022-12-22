@@ -9,6 +9,7 @@ import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../state';
 import EditPostModal from './EditPostModal';
+import DeletePostModal from './DeletePostModal';
 
 interface PostProps {
   post: IOrbisPost;
@@ -39,7 +40,7 @@ export const Post: React.FC<PostProps> = ({ post, context }) => {
         {post.creator === user?.did && (
           <HStack>
             <EditPostModal streamId={post.stream_id} previousContent={post.content.body} />
-            <IconButton aria-label="Delete Post" icon={<FiTrash />} colorScheme="red" />
+            <DeletePostModal streamId={post.stream_id} />
           </HStack>
         )}
       </HStack>
