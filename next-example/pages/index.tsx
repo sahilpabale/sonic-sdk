@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { Connect, Sonic, User } from '../lib';
+import { Sonic } from '../lib';
+import { Text } from '@chakra-ui/react';
 
 export default function Home() {
   return (
@@ -12,7 +13,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>0xSonic SDK Example</h1>
+        <Text fontSize="2xl" fontWeight="bold">
+          Blog #1 - all about tech
+        </Text>
+        <Text mx="8" mb="6" noOfLines={[1, 2, 3, 4, 5, 6]}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo saepe et dolorem, deserunt veritatis dolorum aperiam! Expedita ipsam blanditiis voluptatum explicabo quibusdam. Laborum quis
+          recusandae adipisci voluptas nulla maxime. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo saepe et dolorem, deserunt veritatis dolorum aperiam! Expedita ipsam blanditiis
+          voluptatum explicabo quibusdam. Laborum quis recusandae adipisci voluptas nulla maxime. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo saepe et dolorem, deserunt veritatis
+          dolorum aperiam! Expedita ipsam blanditiis voluptatum explicabo quibusdam. Laborum quis recusandae adipisci voluptas nulla maxime.
+        </Text>
+        <Text mx="8" mb="6" noOfLines={[1, 2, 3, 4, 5, 6]}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo saepe et dolorem, deserunt veritatis dolorum aperiam! Expedita ipsam blanditiis voluptatum explicabo quibusdam. Laborum quis
+          recusandae adipisci voluptas nulla maxime. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo saepe et dolorem, deserunt veritatis dolorum aperiam! Expedita ipsam blanditiis
+          voluptatum explicabo quibusdam. Laborum quis recusandae adipisci voluptas nulla maxime. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo saepe et dolorem, deserunt veritatis
+          dolorum aperiam! Expedita ipsam blanditiis voluptatum explicabo quibusdam. Laborum quis recusandae adipisci voluptas nulla maxime.
+        </Text>
         <Sonic context="sonictest" />
       </main>
     </>
