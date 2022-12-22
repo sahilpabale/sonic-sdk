@@ -49,7 +49,7 @@ export const Post: React.FC<PostProps> = ({ post, context }) => {
       </Text>
       <Box bg="brand.quaternary" h="1px" w="full" />
       <HStack px={4} pb={4}>
-        <ReplyTo master={post} count={post.count_replies} context={context} />
+        <ReplyTo master={post} context={context} />
         <Reactions id={post.stream_id} like_count={post.count_likes} haha_count={post.count_haha} downvote_count={post.count_downvotes} />
       </HStack>
     </VStack>

@@ -42,9 +42,6 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
       {user.did ? (
         <VStack gap={8} bgColor="brand.secondary" p={4} rounded="xl" w="4xl" border="1px solid" borderColor="brand.tertiary">
           <VStack gap={8} w="full">
-            <Box alignSelf="end">
-              <Connect />
-            </Box>
             <AddPost context={context} />
 
             {posts && posts.data.length > 0 && posts.data.map((post) => <Post context={context} post={post} key={post.stream_id} />)}
