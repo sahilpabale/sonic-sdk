@@ -1,13 +1,11 @@
 import { Button, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, VStack } from '@chakra-ui/react';
-import Avatar from '@davatar/react';
+import { Image } from '@davatar/react';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-// import { userState as userAtom } from '../state';
 import orbis from '../orbis.client';
 import { userAtom } from '../state';
+import randomPfp from '../utils/randomPfp';
 import { truncateDid } from '../utils/truncate';
-
-// export interface IConnectProps {}
 
 export const Connect: React.FC = () => {
   const setUser = useSetRecoilState(userAtom);
@@ -64,7 +62,7 @@ export const Connect: React.FC = () => {
         <Popover>
           <PopoverTrigger>
             <button>
-              <Avatar address={user.metadata?.address as string} size={32} />
+              <Image uri={user.profile?.pfp ?? randomPfp()} size={32} />
             </button>
           </PopoverTrigger>
 
@@ -86,7 +84,7 @@ export const Connect: React.FC = () => {
         </Popover>
       ) : (
         <Button onClick={connect} isLoading={isConnecting} loadingText="Connecting...">
-          Connect +
+          Connect Wallet
         </Button>
       )}
     </>
