@@ -1,10 +1,14 @@
 import React from 'react';
-import { VStack, HStack, Text, Box, Avatar } from '@chakra-ui/react';
+import { VStack, HStack, Text, Box, Avatar, IconButton } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { truncateDid } from '../utils/truncate';
 import { ReplyTo } from './ReplyTo';
 import Reactions from './Reactions';
 import Blockies from 'react-blockies';
+import { FiEdit3, FiTrash } from 'react-icons/fi';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../state';
+import EditPostModal from './EditPostModal';
 
 interface PostProps {
   post: IOrbisPost;
@@ -12,23 +16,32 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ post, context }) => {
+  const user = useRecoilValue(userAtom);
   return (
     <VStack gap={1} rounded="lg" backgroundColor="brand.tertiary" w="full" alignItems="start" border="1px solid" borderColor="brand.quaternary">
-      <HStack gap={2} px={4} pt={3} pb={1}>
-        {post.creator_details?.profile?.pfp ? <Avatar size="sm" src={post.creator_details?.profile?.pfp} /> : <Avatar as={Blockies} seed={post.creator_details?.did ?? post.creator} size="sm" />}
-        {post.creator_details?.profile === null ? (
-          <Text fontSize="md" fontWeight="semibold">
-            {truncateDid(post.creator)}
-          </Text>
-        ) : (
-          <Text fontSize="md" fontWeight="semibold">
-            {post.creator_details?.profile?.username as string}{' '}
-            <Text color="darkgray" as="span">
-              ({truncateDid(post.creator)})
+      <HStack justifyContent="space-between" px={4} pt={3} pb={1}>
+        <HStack gap={2}>
+          {post.creator_details?.profile?.pfp ? <Avatar size="sm" src={post.creator_details?.profile?.pfp} /> : <Avatar as={Blockies} seed={post.creator_details?.did ?? post.creator} size="sm" />}
+          {post.creator_details?.profile === null ? (
+            <Text fontSize="md" fontWeight="semibold">
+              {truncateDid(post.creator)}
             </Text>
-          </Text>
+          ) : (
+            <Text fontSize="md" fontWeight="semibold">
+              {post.creator_details?.profile?.username as string}{' '}
+              <Text color="darkgray" as="span">
+                ({truncateDid(post.creator)})
+              </Text>
+            </Text>
+          )}
+          <Text>{dayjs.unix(post.timestamp).fromNow()}</Text>
+        </HStack>
+        {post.creator === user?.did && (
+          <HStack>
+            <EditPostModal streamId={post.stream_id} previousContent={post.content.body} />
+            <IconButton aria-label="Delete Post" icon={<FiTrash />} colorScheme="red" />
+          </HStack>
         )}
-        <Text>{dayjs.unix(post.timestamp).fromNow()}</Text>
       </HStack>
       <Text w="full" px={6}>
         {post.content.body}
