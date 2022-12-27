@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "getSonic": "yarn remove @0xsonic/sdk && yarn add ../*.tgz"
+    "getSonic": "yarn cache clean && rm -rf node_modules/ && rm yarn.lock && yarn install"
   },
   "eslintConfig": {
     "extends": [

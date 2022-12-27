@@ -121,6 +121,10 @@ declare module '@orbisclub/orbis-sdk' {
 
     getPost(post_id: string): Promise<Post>;
 
+    deletePost(post_id: string): Promise<Post>;
+
+    editPost(post_id: string, content: PostContent): Promise<Post>;
+
     isConnected(): Promise<IsConnectedResponse>;
 
     logout(): Promise<LogoutResponse>;
@@ -146,7 +150,7 @@ declare module '@orbisclub/orbis-sdk' {
     useLit?: boolean;
   }
 
-  declare interface IOrbis {
+  export interface IOrbis {
     connect: (provider: any, lit?: boolean) => Promise<IOrbisConnectReturns>;
     connect_v2: (opts?: { provider?: any; chain?: string; lit?: boolean; oauth?: any }) => Promise<IOrbisConnectReturns>;
     connectLit: (provider: any) => Promise<{
@@ -447,7 +451,7 @@ declare module '@orbisclub/orbis-sdk' {
     result: string;
   }
 
-  declare enum IOrbisGetPostsAlgorithm {
+  export enum IOrbisGetPostsAlgorithm {
     'recommendations',
     'all-posts',
     'all-master-posts',
@@ -457,13 +461,13 @@ declare module '@orbisclub/orbis-sdk' {
     ''
   }
 
-  declare enum OrbisReaction {
+  export enum OrbisReaction {
     'like',
     'haha',
     'downvote'
   }
 
-  interface IOrbisGroup {
+  export interface IOrbisGroup {
     channels: Pick<IOrbisChannel, 'content' | 'stream_id'>[];
     content: {
       name?: string;
@@ -476,7 +480,7 @@ declare module '@orbisclub/orbis-sdk' {
     stream_id: string;
   }
 
-  interface IOrbisChannel {
+  export interface IOrbisChannel {
     archived?: boolean;
     content: {
       group_id: string;
@@ -501,7 +505,7 @@ declare module '@orbisclub/orbis-sdk' {
     type: 'chat' | 'feed';
   }
 
-  declare interface IOrbisProfile {
+  export interface IOrbisProfile {
     address: string;
     count_followers: number;
     count_following: number;
@@ -534,7 +538,7 @@ declare module '@orbisclub/orbis-sdk' {
     username: string;
   }
 
-  interface IOrbisEncryptionRules {
+  export interface IOrbisEncryptionRules {
     type: 'token-gated' | 'custom';
     chain: string;
     contractType: 'ERC20' | 'ERC721' | 'ERC1155';
@@ -544,18 +548,18 @@ declare module '@orbisclub/orbis-sdk' {
     accessControlConditions?: object;
   }
 
-  interface IOrbisEncryptedBody {
+  export interface IOrbisEncryptedBody {
     accessControlConditions: string;
     encryptedString: string;
     encryptedSymmetricKey: string;
   }
 
-  interface IOrbisPostMention {
+  export interface IOrbisPostMention {
     did: string;
     username: string;
   }
 
-  interface IOrbisPostContent {
+  export interface IOrbisPostContent {
     body: string;
     title?: string | null;
     context?: string | null;
@@ -573,7 +577,7 @@ declare module '@orbisclub/orbis-sdk' {
     encryptedBody?: IOrbisEncryptedBody | null;
   }
 
-  declare interface IOrbisPost {
+  export interface IOrbisPost {
     content: IOrbisPostContent;
     context?: string;
     context_details?: {
@@ -603,7 +607,7 @@ declare module '@orbisclub/orbis-sdk' {
     type?: string;
   }
 
-  declare interface IOrbisMessageContent {
+  export interface IOrbisMessageContent {
     conversation_id: string;
     encryptedMessage: {
       accessControlConditions: string;
@@ -619,7 +623,7 @@ declare module '@orbisclub/orbis-sdk' {
     reply_to: string | null;
   }
 
-  declare interface IOrbisMessage {
+  export interface IOrbisMessage {
     content: IOrbisMessageContent;
     conversation_id: string;
     created_at: string;
@@ -634,7 +638,7 @@ declare module '@orbisclub/orbis-sdk' {
     timestamp: number;
   }
 
-  declare interface IOrbisNotification {
+  export interface IOrbisNotification {
     content: {
       conversation_id: string;
       encryptedMessage: IOrbisEncryptedBody;
@@ -648,13 +652,13 @@ declare module '@orbisclub/orbis-sdk' {
       profile: IOrbisProfile['details']['profile'];
     };
   }
-  interface IOrbisGetPosts {
+  export interface IOrbisGetPosts {
     data: IOrbisPost[];
     error: any;
     status: number;
   }
 
-  interface IOrbisGetReaction {
+  export interface IOrbisGetReaction {
     data: { type: string };
     error: any;
     status: number;

@@ -20,8 +20,6 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ master, context }) => {
     enabled: false
   });
 
-  console.log('data', data);
-
   return (
     <>
       <Button
@@ -46,16 +44,14 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ master, context }) => {
               <Text>Loading...</Text>
             </div>
           ) : (
-            <div>
-              <DrawerBody>
-                <VStack gap={8} w="full">
-                  <Post post={master} context={context} />
-                  <Box bg="brand.quaternary" h="0.8" w="full" />
-                  <AddPost master={master.stream_id} context={context} />
-                  {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} context={context} />)}
-                </VStack>
-              </DrawerBody>
-            </div>
+            <DrawerBody>
+              <VStack gap={8} w="full">
+                <Post post={master} context={context} />
+                <Box bg="brand.quaternary" h="0.8" w="full" />
+                <AddPost master={master.stream_id} context={context} />
+                {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} context={context} />)}
+              </VStack>
+            </DrawerBody>
           )}
         </DrawerContent>
       </Drawer>

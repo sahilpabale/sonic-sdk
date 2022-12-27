@@ -41,7 +41,7 @@ export const Sonic: React.FC<SonicProps> = ({ context }) => {
 
   return (
     <>
-      {user.did ? (
+      {user && user.did ? (
         <VStack gap={8} bgColor="brand.secondary" p={4} rounded="xl" w="4xl" border="1px solid" borderColor="brand.tertiary">
           <VStack gap={8} w="full">
             <AddPost context={context} />

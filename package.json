@@ -4,7 +4,7 @@
   "description": "Sonic SDK enables you to quickly setup and integrate your decentralized community in a flash!",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "dist/@types",
+  "types": "dist/@types/*",
   "files": [
     "dist"
   ],
@@ -57,7 +57,7 @@
     "@davatar/react": "^1.11.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@orbisclub/orbis-sdk": "^0.4.4-beta.41",
+    "@orbisclub/orbis-sdk": "^0.4.5",
     "dayjs": "^1.11.7",
     "framer-motion": "^7.10.0",
     "react-hook-form": "^7.40.0",
