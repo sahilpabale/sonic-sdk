@@ -4,7 +4,7 @@
 
 "@0xsonic/sdk@../0xsonic-sdk-0.1.7.tgz":
   version "0.1.7"
-  resolved "../0xsonic-sdk-0.1.7.tgz#2f6980f0818388690a771f231f7f1231212f8c5b"
+  resolved "../0xsonic-sdk-0.1.7.tgz#d216d52df70a4d49fd3ab137a8378e0b8669bf87"
   dependencies:
     "@chakra-ui/react" "^2.4.3"
     "@davatar/react" "^1.11.1"
