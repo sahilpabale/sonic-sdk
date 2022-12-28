@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { Sonic } from '../lib';
+import { Sonic } from '@0xsonic/sdk';
 import { Text } from '@chakra-ui/react';
 
 export default function Home() {
