@@ -36,6 +36,9 @@
         "no-duplicate-imports": "error",
         "@typescript-eslint/no-explicit-any": "off",
         "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error"
+        "react/jsx-uses-vars": "error",
+        "react/no-unescaped-entities": "off",
+        "no-constant-condition": "off",
+        "react/prop-types": "off"
     }
 }

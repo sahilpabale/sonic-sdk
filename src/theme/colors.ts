@@ -5,15 +5,15 @@ export const mainColors = {
   },
   'brand.secondary': {
     default: '#eeeeee',
-    _dark: '#222222'
+    _dark: '#1a1a1a'
   },
   'brand.tertiary': {
     default: '#cecfd1',
-    _dark: '#303030'
+    _dark: '#252525'
   },
   'brand.quaternary': {
     default: '#bdbdc2',
-    _dark: '#474747'
+    _dark: '#363636'
   }
 };
 

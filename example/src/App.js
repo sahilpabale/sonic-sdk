@@ -1,13 +1,11 @@
-import { User, Connect, Sonic } from '@0xsonic/sdk';
+import React from 'react';
+import { Sonic } from '@0xsonic/sdk';
 
 function App() {
   return (
     <div className="App">
       <h1>0xSonic SDK Example</h1>
-      <User />
-      <Connect />
-
-      <Sonic context="sahil" />
+      <Sonic context="sonictest" />
     </div>
   );
 }

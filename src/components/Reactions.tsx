@@ -1,0 +1,49 @@
+/* eslint-disable camelcase */
+import { HStack } from '@chakra-ui/react';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { useRecoilValue } from 'recoil';
+import orbis from '../orbis.client';
+import { userAtom } from '../state';
+import Reaction from './Reaction';
+
+interface ReactionsProps {
+  id: string;
+  like_count: number;
+  haha_count: number;
+  downvote_count: number;
+}
+
+const Reactions: React.FC<ReactionsProps> = ({ id, like_count, haha_count, downvote_count }) => {
+  const user = useRecoilValue(userAtom);
+
+  const fetchReactions = async () => {
+    const { data, error } = await orbis.getReaction(id, user.did as string);
+
+    if (error) {
+      console.error('error fetching reactions', error);
+    } else {
+      if (data) {
+        return data.type;
+      }
+    }
+  };
+
+  const { data: reactedTo } = useQuery<string>(`userReaction-${id}`, fetchReactions, { enabled: !!user.did });
+
+  return (
+    <HStack px={4} spacing="1.5">
+      <Reaction reaction="like" postId={id} count={like_count} didViewerReact={reactedTo === 'like'}>
+        ❤️
+      </Reaction>
+      <Reaction reaction="haha" postId={id} count={haha_count} didViewerReact={reactedTo === 'haha'}>
+        😂
+      </Reaction>
+      <Reaction reaction="downvote" postId={id} count={downvote_count} didViewerReact={reactedTo === 'downvote'}>
+        👎
+      </Reaction>
+    </HStack>
+  );
+};
+
+export default Reactions;
