@@ -2,19 +2,24 @@
   "name": "@0xsonic/sdk",
   "version": "0.2.3",
   "description": "Sonic SDK enables you to quickly setup and integrate your decentralized community in a flash!",
-  "main": "dist/index.cjs",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "type": "module",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist/ && npm run format && npm run lint && tsup src/ --dts",
+    "build": "rm -rf dist/ && npm run format && npm run lint && tsup src/ --format esm,cjs --dts",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --write 'src/**/*.{ts,tsx,css,md}' --config ./.prettierrc",
     "prepublishOnly": "npm run build",
     "localPub": "npm run build && rm ./*.tgz && npm pack && cd example/ && npm run getSonic && cd .."
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.mjs"
+    }
   },
   "repository": "https://github.com/sahilpabale/sonic-sdk.git",
   "author": "Sahil Pabale <dev.sahilpabale@gmail.com> (https://sahil.lol)",
