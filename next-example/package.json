@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@0xsonic/sdk": "^0.2.0",
     "@chakra-ui/react": "^2.4.4",
     "@davatar/react": "^1.11.1",
     "@emotion/react": "^11.10.5",

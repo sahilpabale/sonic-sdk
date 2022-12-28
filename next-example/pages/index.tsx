@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { Sonic } from '../lib';
 import { Text } from '@chakra-ui/react';
 
 export default function Home() {
@@ -28,7 +27,7 @@ export default function Home() {
           voluptatum explicabo quibusdam. Laborum quis recusandae adipisci voluptas nulla maxime. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo saepe et dolorem, deserunt veritatis
           dolorum aperiam! Expedita ipsam blanditiis voluptatum explicabo quibusdam. Laborum quis recusandae adipisci voluptas nulla maxime.
         </Text>
-        <Sonic context="sonictest" />
+        {/* <Sonic context="sonictest" /> */}
       </main>
     </>
   );
