@@ -30,6 +30,8 @@ export const Connect: React.FC = () => {
     }
   };
 
+  const [isConnecting, setIsConnecting] = useState(false);
+
   const connect = async () => {
     setIsConnecting(true);
     try {
