@@ -4,7 +4,7 @@
   "description": "Sonic SDK enables you to quickly setup and integrate your decentralized community in a flash!",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "dist/@types/*",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
