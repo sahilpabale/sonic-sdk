@@ -14,7 +14,7 @@
       "jsx": "react-jsx",
       "lib": ["es5", "es2015", "es2016", "dom", "esnext"],
       "types": ["node"],
-      "module": "ESNext",
+      "module": "CommonJS",
       "moduleResolution": "node",
       "noImplicitAny": true,
       "noUnusedLocals": true,
@@ -26,7 +26,7 @@
       "noUnusedParameters": false,
       "preserveWatchOutput": true,
       "skipLibCheck": true,
-      "target": "es6",
+      "target": "ES6",
       "composite": false
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]

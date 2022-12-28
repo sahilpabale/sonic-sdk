@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@0xsonic/sdk@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@0xsonic/sdk/-/sdk-0.2.1.tgz#45097c67c64b356d627eacd9f616a92e83199aab"
-  integrity sha512-LtlEa3Mk+BAyOrfBAHP7y26//J79ggriQuqzJF37dtBaKOl8GLoLIzaCAznx6piKPrCw/MwgQy8wjXnYOU/AHA==
+"@0xsonic/sdk@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@0xsonic/sdk/-/sdk-0.2.2.tgz#6ef3661ac0f418816b1e85649d55a8f331d0ac0d"
+  integrity sha512-rtfjtRmTU4y1WUF+lnWTohLu0vplU6zc36Sy/PGuwhhVJ2ybtPA9OcS1mkfyfxXakW+bu/WuGZji7rjs6y17gw==
   dependencies:
     "@chakra-ui/react" "^2.4.3"
     "@davatar/react" "^1.11.1"
