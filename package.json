@@ -1,6 +1,6 @@
 {
   "name": "@0xsonic/sdk",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Sonic SDK enables you to quickly setup and integrate your decentralized community in a flash!",
   "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
