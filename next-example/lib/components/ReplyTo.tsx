@@ -39,21 +39,23 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ master, context }) => {
           <DrawerCloseButton />
 
           <DrawerHeader>Replies to </DrawerHeader>
-          {isLoading ? (
-            <div>
-              <Spinner />
-              <Text>Loading...</Text>
-            </div>
-          ) : (
-            <DrawerBody>
-              <VStack gap={8} w="full">
-                <Post post={master} context={context} />
-                <Box bg="brand.quaternary" h="0.8" w="full" />
-                <AddPost master={master.stream_id} context={context} />
-                {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} context={context} />)}
-              </VStack>
-            </DrawerBody>
-          )}
+          <DrawerBody>
+            <VStack gap={8} w="full">
+              {isLoading ? (
+                <>
+                  <Spinner />
+                  <Text>Loading...</Text>
+                </>
+              ) : (
+                <>
+                  <Post post={master} context={context} />
+                  <Box bg="brand.quaternary" h="0.8" w="full" />
+                  <AddPost master={master.stream_id} context={context} />
+                  {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} context={context} />)}
+                </>
+              )}
+            </VStack>
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
