@@ -1,4 +1,4 @@
-import { FormControl, FormErrorMessage, Text, Textarea, VStack, Button, Popover, PopoverTrigger, PopoverContent, PopoverBody, HStack } from '@chakra-ui/react';
+import { FormControl, FormErrorMessage, Text, Textarea, VStack, Button, Popover, PopoverTrigger, PopoverContent, PopoverBody, HStack, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Image } from '@davatar/react';
 import { useForm } from 'react-hook-form';
@@ -11,12 +11,13 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 interface AddReplyProps {
   context: string;
   master?: string;
+  onClose?: () => void;
 }
 interface PostForm {
   content: string;
 }
 
-export const AddPost: React.FC<AddReplyProps> = ({ master, context }) => {
+export const AddPost: React.FC<AddReplyProps> = ({ master, context, onClose }) => {
   const user = useRecoilValue(userAtom);
   const setUser = useSetRecoilState(userAtom);
   const {
@@ -28,6 +29,8 @@ export const AddPost: React.FC<AddReplyProps> = ({ master, context }) => {
   const [isAddingPost, setIsAddinPost] = useState(false);
 
   const queryClient = useQueryClient();
+
+  const toast = useToast();
 
   const addComment = async (data: PostForm) => {
     setIsAddinPost(true);
@@ -47,6 +50,16 @@ export const AddPost: React.FC<AddReplyProps> = ({ master, context }) => {
       await queryClient.refetchQueries('posts');
       if (master) {
         await queryClient.refetchQueries(`replies-${master}`);
+
+        toast({
+          title: 'Reply added',
+          description: 'Your reply has been added',
+          status: 'success',
+          duration: 5000,
+          isClosable: true
+        });
+
+        onClose && onClose();
       }
     } catch (e) {
       console.error('Error creating post', e);
