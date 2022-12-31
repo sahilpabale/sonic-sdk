@@ -26,10 +26,8 @@ Table of Contents:
 ## 📦 Getting Started
 ### Installation
 If not by the docs, we have a video to walk you through the installation and setting up sonic in your dapp.
-<a href="https://www.loom.com/share/7153d2f0079d4a9184877b146b763d05">
-  <p>sonic video walkthrough</p>
-  <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/7153d2f0079d4a9184877b146b763d05-1672507011581-with-play.gif">
-</a>
+
+[![Video Walkthrough](https://cdn.loom.com/sessions/thumbnails/7153d2f0079d4a9184877b146b763d05-1672507011581-with-play.gif)](https://www.loom.com/share/7153d2f0079d4a9184877b146b763d05)
 
 #### NPM
 ```bash
