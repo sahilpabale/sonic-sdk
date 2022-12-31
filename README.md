@@ -17,15 +17,20 @@ Table of Contents:
     - [Yarn](#yarn)
     - [PNPM](#pnpm)
   - [Usage](#usage)
-- [Features](#⭐️-features)
-- [Support](#🚀-support)
-- [Contributing](#✅-contributing)
-- [Builders](#👨🏻‍💻-builders)
-- [License](#📄-license)
+- [Features](#-features)
+- [Support](#-support)
+- [Contributing](#-contributing)
+- [Builders](#-builders)
+- [License](#-license)
 
 ## 📦 Getting Started
 ### Installation
-Install Sonic SDK using any npm package provider.
+If not by the docs, we have a video to walk you through the installation and setting up sonic in your dapp.
+<a href="https://www.loom.com/share/7153d2f0079d4a9184877b146b763d05">
+  <p>sonic video walkthrough</p>
+  <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/7153d2f0079d4a9184877b146b763d05-1672507011581-with-play.gif">
+</a>
+
 #### NPM
 ```bash
 npm install @0xsonic/sdk
@@ -41,6 +46,20 @@ pnpm install @0xsonic/sdk
 
 ### Usage
 React-js Application:
+> **Warning**
+> Currently we're facing a source map issue which will throw some weird warnings in your react-app, for this we have a temporary solution to be added in package.json file.
+
+Add `GENERATE_SOURCEMAP=true` in front of `react-scripts start` so the warning goes off!
+```json
+// package.json
+"scripts": {
+    "start": "GENERATE_SOURCEMAP=false react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+  },
+```
+
 ```js
 // src/index.js
 
@@ -78,7 +97,7 @@ function App() {
 export default App;
 ```
 
-## ⭐️ Features
+## 💻 Features
 1. `<SonicProvider />`
    <br />SonicProvider wrapper helps us to manage the states and connection with Orbis & Ceramic protocol under the hood.
 2. `<Sonic context=""/>`
@@ -91,7 +110,7 @@ export default App;
 ## 🚀 Support
 | Framework      | Version     |
 | :----:         | :----:      |
-| react-js       | 0.2.5 ✅    |
+| react-js       | 0.2.6 ✅    |
 | next-js        | 0.3.0 🏗    |
 | react-ts       | 0.3.5 🏗    |
 | next-ts        | 0.4.0 🏗    |
