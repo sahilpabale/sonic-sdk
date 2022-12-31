@@ -7,5 +7,7 @@ export const tsupReactConfig: Options = {
   keepNames: true,
   minify: true,
   sourcemap: true,
+  splitting: false,
+  treeshake: true,
   format: ['cjs', 'esm']
 };
