@@ -50,7 +50,7 @@ export const ReplyTo: React.FC<ReplyToProps> = ({ master, context }) => {
                 <>
                   <Post post={master} context={context} />
                   <Box bg="brand.quaternary" h="0.8" w="full" />
-                  <AddPost master={master.stream_id} context={context} />
+                  <AddPost master={master.stream_id} context={context} onClose={onClose} />
                   {data?.replies && data.replies.length > 0 && data.replies.map((post: IOrbisPost) => <Post key={post.stream_id} post={post} context={context} />)}
                 </>
               )}
