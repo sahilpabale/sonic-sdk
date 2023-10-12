@@ -107,6 +107,7 @@ function App() {
       </VStack>
       <VStack mx={[8, 16]} my={16} gap={8}>
         <Sonic context="sonic" />
+        {/* 
         <Text textColor="gray.300" fontFamily="mono">
           built with 🫶🏻 by{' '}
           <Link href="https://sahil.lol" isExternal textColor="green.400" _hover={{ textColor: 'green.500' }}>
@@ -117,6 +118,7 @@ function App() {
             anishde.eth
           </Link>
         </Text>
+        */ }
       </VStack>
     </>
   );
